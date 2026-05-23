@@ -1,61 +1,74 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>RefriCook | Рецепты из холодильника</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="{{ asset('js/recipe-app.js') }}"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { font-family: 'Quicksand', sans-serif; }
-        body { background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%); }
-        .gradient-text { background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .btn-primary { background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%); transition: all 0.3s ease; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(255, 107, 107, 0.4); }
-        .recipe-card { transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
-        .recipe-card:hover { transform: translateY(-5px); background: white; box-shadow: 0 20px 30px -12px rgba(255, 107, 107, 0.15); }
-        .heart-btn { transition: transform 0.2s ease; }
-        .heart-btn:hover { transform: scale(1.1); }
-    </style>
-    @stack('styles')
+    <title>@yield('title', 'Кофе и Книги — уютная кофейня')</title>
+    <meta name="description" content="@yield('description', 'Кофейня Кофе и Книги — ароматный кофе, свежая выпечка и уютная атмосфера. Меню, мероприятия, отзывы.')">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="preload" as="image" href="{{ asset('images/cappuccino.png') }}">
 </head>
 <body>
-    <header class="bg-white/80 backdrop-blur-md border-b border-rose-100 sticky top-0 z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <a href="{{ route('home') }}" class="text-2xl font-bold gradient-text">RefriCook</a>
-                <div class="flex items-center gap-4">
+    <!-- Верхняя полоса -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="{{ route('home') }}">Кофе и Книги</a>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="tel:{{ \App\Helpers\SettingsHelper::getPhone() }}" class="phone-btn">Позвонить</a>
+                    <a href="{{ route('cart') }}" class="btn btn-outline-light btn-sm">Корзина</a>
                     @auth
-                        <a href="{{ route('profile') }}" class="text-rose-500 hover:text-rose-700 text-sm font-medium">{{ Auth::user()->login }}</a>
-                        @if(Auth::user()->is_admin == 1)
-                            <a href="{{ route('admin') }}" class="px-3 py-1.5 bg-rose-500 text-white rounded-lg text-sm hover:bg-rose-600 transition">Админка</a>
-                        @endif
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                        <a href="{{ route('profile') }}" class="btn btn-outline-light btn-sm">{{ auth()->user()->name }}</a>
+                        <form method="POST" action="/logout" class="d-inline">
                             @csrf
-                            <button type="submit" class="text-rose-400 hover:text-rose-600 text-sm">Выйти</button>
+                            <button class="btn btn-outline-light btn-sm">Выйти</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="text-rose-500 hover:text-rose-600 text-sm">Войти</a>
-                        <a href="{{ route('register') }}" class="px-4 py-2 btn-primary text-white rounded-lg text-sm">Регистрация</a>
+                        <a href="/login" class="btn btn-outline-light btn-sm">Войти</a>
+                        <a href="/register" class="btn btn-outline-light btn-sm">Регистрация</a>
                     @endauth
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 
-    <main class="min-h-screen">
+    <!-- Нижняя полоса (меню) -->
+    <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('menu') }}">Меню</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('events') }}">Мероприятия</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('reviews.index') }}">Отзывы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contacts') }}">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
         @yield('content')
-    </main>
+    </div>
 
-    <footer class="bg-white/80 backdrop-blur-sm border-t border-rose-100 mt-12">
-        <div class="max-w-7xl mx-auto px-4 py-6 text-center">
-            <p class="text-rose-400 text-sm">© 2026 RefriCook. Готовим с любовью ❤️</p>
+    <footer>
+        <div class="container text-center">
+            <p style="margin:0;">Кофе и Книги &copy; 2026</p>
+            <p style="margin:0; font-size:0.9rem;">ул. Примерная, д. 42 | +7 (999) 123-45-67 | Пн-Вс 8:00-23:00</p>
         </div>
     </footer>
 
-    @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

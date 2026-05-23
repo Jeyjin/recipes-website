@@ -1,0 +1,352 @@
+:root {
+    --coffee-dark: #5D4037;
+    --coffee-medium: #8D6E63;
+    --coffee-light: #D7CCC8;
+    --beige: #F5E6D3;
+    --cream: #FFF8F0;
+    --soft-pink: #F4D0D7;
+    --pink-medium: #E8B4BC;
+    --pink-dark: #C97B84;
+    --text-dark: #3E2723;
+    --white: #FFFFFF;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+}
+
+/* Верхняя полоса */
+.top-bar {
+    background: linear-gradient(135deg, #6D4C41, #8D6E63);
+    padding: 10px 0;
+}
+
+.top-bar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #F5E6D3 !important;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin: 0;
+}
+
+.top-bar .btn-sm {
+    padding: 5px 15px;
+    font-size: 0.85rem;
+}
+
+/* Нижняя полоса (меню) */
+.main-nav {
+    background: linear-gradient(135deg, #F4D0D7, #E8B4BC);
+    padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.main-nav .nav-link {
+    color: #5D4037 !important;
+    margin: 0 10px;
+    padding: 8px 18px !important;
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.main-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.5);
+    color: #3E2723 !important;
+}
+
+/* Переопределение ВСЕХ кнопок Bootstrap */
+.btn {
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--pink-medium);
+    color: var(--text-dark);
+}
+.btn-primary:hover {
+    background-color: var(--pink-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(201, 123, 132, 0.3);
+}
+
+.btn-success {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+}
+.btn-success:hover {
+    background-color: var(--pink-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(201, 123, 132, 0.3);
+}
+
+.btn-danger {
+    background-color: #E57373;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #C62828;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--coffee-light);
+    color: var(--text-dark);
+}
+.btn-secondary:hover {
+    background-color: var(--coffee-medium);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
+
+.btn-sm {
+    padding: 5px 15px;
+    font-size: 0.85rem;
+}
+
+.btn-outline-light {
+    border: 2px solid #F5E6D3;
+    color: #F5E6D3;
+    background: transparent;
+}
+.btn-outline-light:hover {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+    border-color: var(--soft-pink);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--pink-medium);
+    color: var(--pink-dark);
+    background: transparent;
+}
+.btn-outline-primary:hover {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+    border-color: var(--soft-pink);
+}
+
+/* Ссылка "Позвонить" */
+.phone-btn {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+    border-radius: 25px;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+.phone-btn:hover {
+    background-color: var(--pink-medium);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(201, 123, 132, 0.3);
+}
+
+/* Карточки */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(93,64,55,0.15);
+}
+
+.card-header {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+    font-weight: bold;
+    border: none;
+}
+
+.card-footer {
+    background-color: #FFF5F5;
+    border-top: 1px solid var(--soft-pink);
+}
+
+.card-title {
+    color: var(--coffee-dark);
+    font-weight: bold;
+}
+
+.price {
+    color: var(--pink-dark);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5 {
+    color: var(--coffee-dark);
+}
+
+h1 {
+    border-bottom: 3px solid var(--soft-pink);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    color: #6D4C41;
+}
+
+/* Футер */
+footer {
+    background: linear-gradient(135deg, #6D4C41, #8D6E63);
+    color: #F5E6D3;
+    padding: 25px 0;
+    margin-top: 50px;
+}
+
+/* Бейджи */
+.badge {
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+.badge.bg-success {
+    background-color: var(--soft-pink) !important;
+    color: var(--text-dark);
+}
+.badge.bg-primary {
+    background-color: var(--pink-medium) !important;
+}
+
+/* Категории */
+.list-group-item {
+    border: none;
+    margin-bottom: 5px;
+    border-radius: 10px !important;
+    transition: all 0.3s;
+    padding: 12px 15px;
+}
+.list-group-item:hover {
+    background-color: var(--soft-pink);
+}
+.list-group-item.active {
+    background-color: var(--pink-medium);
+    border-color: var(--pink-medium);
+    color: var(--text-dark);
+}
+
+/* Алерты */
+.alert {
+    border: none;
+    border-radius: 15px;
+    padding: 15px 20px;
+}
+.alert-success {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+.alert-danger {
+    background-color: #FFEBEE;
+    color: #C62828;
+}
+
+/* Hero секция */
+.hero-section {
+    background: linear-gradient(135deg, var(--soft-pink), var(--beige), var(--soft-pink));
+    border-radius: 20px;
+    padding: 60px 40px;
+    margin-bottom: 40px;
+}
+
+/* Инфо-блоки */
+.info-block {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    border-top: 4px solid var(--soft-pink);
+}
+.info-block:hover {
+    box-shadow: 0 8px 30px rgba(201, 123, 132, 0.2);
+    border-top-color: var(--pink-medium);
+}
+
+/* Формы */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 2px solid var(--coffee-light);
+    padding: 10px 15px;
+    transition: all 0.3s;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--pink-medium);
+    box-shadow: 0 0 0 0.2rem rgba(244, 208, 215, 0.4);
+}
+
+/* Таблицы */
+.table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.table thead {
+    background-color: var(--soft-pink);
+    color: var(--text-dark);
+}
+.table tbody tr:hover {
+    background-color: #FFF5F5;
+}
+
+/* Пагинация и прочее */
+.page-link {
+    border-radius: 20px !important;
+    margin: 0 3px;
+    border: none;
+    color: var(--text-dark);
+}
+.page-item.active .page-link {
+    background-color: var(--pink-medium);
+    border-color: var(--pink-medium);
+}
+
+hr {
+    border-color: var(--soft-pink);
+    opacity: 0.5;
+}
+
+a {
+    color: var(--pink-dark);
+    transition: all 0.3s;
+}
+a:hover {
+    color: var(--coffee-dark);
+}
+
+/* Картинка в карточке */
+.card img {
+    object-fit: cover;
+}
+
+/* Хлебные крошки */
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
